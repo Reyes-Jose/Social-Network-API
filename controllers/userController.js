@@ -8,7 +8,7 @@ module.exports = {
     },
     getSingleUser(req, res){
         User.findOne({ _id: req.params.userId })
-        .populate('though')
+        .populate('thought')
         .populate('friendData')
         .select('-__v')
         .then((user) => 
