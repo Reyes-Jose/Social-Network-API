@@ -2,7 +2,7 @@ const { User, Thought } = require('../models');
 
 
 
-module.export = {
+module.exports = {
     
 
     getAllThoughts(req, res){

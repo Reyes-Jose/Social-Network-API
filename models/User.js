@@ -7,7 +7,7 @@ const userSchema = new Schema(
             type: String,
             unique: true,
             required: true,
-            trimmed: true,
+            trim: true,
         },
         email: {
             type: String,
@@ -17,20 +17,21 @@ const userSchema = new Schema(
         },
         thoughts: [{
             type: Schema.Types.ObjectId,
-            ref: 'Thoughts',
+            ref: 'Thought',
         }],
         friends: [{
-            type: Schema.Type.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'User',
         }]
     },
     {
         toJSON: {
             virtuals: true,
+            getters: true,
         },
-        id: false
+        id: false,
     }
-)
+);
 
 //creating virtual to get the ammount of friends.
 userSchema.virtual('friendCount').get(function(){
