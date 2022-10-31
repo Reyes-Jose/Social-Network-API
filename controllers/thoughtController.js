@@ -7,7 +7,7 @@ module.exports = {
 
     getAllThoughts(req, res){
         Thought.find()
-            .then((thoughts) => res.json(thoughts))
+            .then((thought) => res.json(thought))
             .catch((err) => res.status(500).json(err));
     },
     getSingleThought(req, res) {
@@ -35,7 +35,7 @@ module.exports = {
             ? res
                 .status(404)
                 .json({ message: 'thought created, but found no user with that ID' })
-            : res.json('Created the thought 🎉')
+            : res.json(user)
         )
         .catch((err) => {
           console.log(err);
@@ -67,7 +67,7 @@ module.exports = {
             ? res.status(404).json({ message: 'No such thought exists' })
             : Thought.findOneAndUpdate(
                 { thought: req.params.thoughtId },
-                { $pull: { thoughts: req.params.thoughtId } },
+                { $pull: { thought: req.params.thoughtId } },
                 { new: true }
               )
         )
